@@ -10,6 +10,7 @@ This repository contains the available javascript extension catalogues for the M
 
 | Name | Version | Language | Last Updated |
 |------|---------|----------|---------------|
+| TruyenQQ | 1.0.0 | vi | 2026/07/08 03:52 IST |
 | Atsumaru | 0.0.1 | en | 2026/07/02 15:54 IST |
 | WeLoMa | 1.0.0 | ja | 2025/10/29 23:26 IST |
 | Mangapark | 1.0.1 | en | 2025/09/17 08:55 IST |

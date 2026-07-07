@@ -1,5 +1,11 @@
 {
     "manga": {
+        "TruyenQQ": {
+            "name": "TruyenQQ",
+            "version": "1.0.0",
+            "langs": "vi",
+            "lastUpd": 1783462963.124154
+        },
         "Atsumaru": {
             "name": "Atsumaru",
             "version": "0.0.1",
