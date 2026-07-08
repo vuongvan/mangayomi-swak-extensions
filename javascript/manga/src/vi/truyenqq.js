@@ -173,13 +173,33 @@ class DefaultExtension extends MProvider {
         if (extra) description = description ? `${description}\n\n${extra}` : extra;
 
         const chapters = [];
-        doc.select(".works-chapter-list a").forEach((e) => {
-            const cname = e.text.trim();
-            const curl = e.attr("href");
-            if (cname && curl) chapters.push({ name: cname, url: curl });
+        doc.select(".works-chapter-list .works-chapter-item").forEach((item) => {
+            const aEl = item.selectFirst(".name-chap a") || item.selectFirst("a");
+            if (!aEl) return;
+            const cname = aEl.text.trim();
+            const curl = aEl.attr("href");
+            if (!cname || !curl) return;
+
+            const timeEl = item.selectFirst(".time-chap");
+            const dateUpload = timeEl ? this.parseDate(timeEl.text.trim()) : null;
+
+            chapters.push({ name: cname, url: curl, dateUpload });
         });
 
         return { name, imageUrl, author, status, genre, description, chapters };
+    }
+
+    // Site uses dd/MM/yyyy for chapter upload dates.
+    parseDate(dateStr) {
+        if (!dateStr) return null;
+        const parts = dateStr.trim().split("/");
+        if (parts.length !== 3) return null;
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10);
+        const year = parseInt(parts[2], 10);
+        if (!day || !month || !year) return null;
+        const d = new Date(year, month - 1, day);
+        return String(d.valueOf());
     }
 
     // ---------- chapter pages ----------
